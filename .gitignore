@@ -33,3 +33,7 @@ bin/
 
 run/
 libs/
+
+src/main/java/org/joor/
+src/main/java/org/yaml/snakeyaml/
+src/main/java/net/md_5/bungee/config/

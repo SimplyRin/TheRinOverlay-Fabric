@@ -15,7 +15,7 @@ public class CustomClientPlayNetHandler {
 
     @Inject(method = "onGameMessage", at = @At("HEAD"), cancellable = true)
     public void onGameMessage(GameMessageS2CPacket packet, CallbackInfo info) {
-        String message = packet.getMessage().getString();
+        String message = packet.content().getString();
         Main.getInstance().getTps().onChat(message, info);
     }
 

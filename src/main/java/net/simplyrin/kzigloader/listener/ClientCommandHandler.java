@@ -5,7 +5,6 @@ import lombok.Data;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.ClickEvent;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Style;
 import net.simplyrin.kzigloader.Main;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -117,7 +116,7 @@ public class ClientCommandHandler {
 						items.add(new OslItem("HttpClient", "Apache License 2.0", "https://github.com/SimplyRin/HttpClient/blob/master/LICENSE.md"));
 
 						for (OslItem item : items) {
-							LiteralText textComponent = new LiteralText(net.simplyrin.kzigloader.utils.ChatColor.translateAlternateColorCodes('&', "&b" + item.name + " &7(" + item.license + ")"));
+							var textComponent = this.instance.getMutableText(net.simplyrin.kzigloader.utils.ChatColor.translateAlternateColorCodes('&', "&b" + item.name + " &7(" + item.license + ")"));
 							Style style = textComponent.getStyle();
 							style.withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, item.url));
 							textComponent.setStyle(style);

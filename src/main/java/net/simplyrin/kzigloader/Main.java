@@ -13,12 +13,14 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.LiteralTextContent;
+import net.minecraft.text.MutableText;
 import net.simplyrin.kzigloader.listener.ClientCommandHandler;
 import net.simplyrin.kzigloader.utils.*;
 import net.simplyrin.kzigloader.utils.Tps;
 import net.simplyrin.kzigloader.utils.Tps.MemoryItem;
 import net.simplyrin.kzigloader.utils.Tps.TpsItem;
+import org.spongepowered.asm.mixin.Mutable;
 
 /**
  * Created by SimplyRin on 2019/11/17.
@@ -302,7 +304,7 @@ public class Main implements ModInitializer {
 
 			String color = "&f";
 			if (damage <= 10.0) {
-				mc.inGameHud.setOverlayMessage(new LiteralText(ChatColor.translateAlternateColorCodes("&cBe careful of durability!")), false);
+				mc.inGameHud.setOverlayMessage(this.getMutableText(ChatColor.translateAlternateColorCodes("&cBe careful of durability!")), false);
 
 				color = "&4";
 			} else if (damage <= 20.0) {
@@ -440,14 +442,30 @@ public class Main implements ModInitializer {
 		if (player == null) {
 			return;
 		}
-		player.sendMessage(new LiteralText(ChatColor.translateAlternateColorCodes(this.prefix + message)), false);
+		player.sendMessage(this.getMutableText(ChatColor.translateAlternateColorCodes(this.prefix + message)), false);
 	}
 
-	public void info(LiteralText message) {
-		LiteralText textComponent = new LiteralText(ChatColor.translateAlternateColorCodes(this.prefix));
+	public void info(MutableText text) {
+		var mc = MinecraftClient.getInstance();
+		if (mc == null) {
+			return;
+		}
+		ClientPlayerEntity player = mc.player;
+		if (player == null) {
+			return;
+		}
+		player.sendMessage(text, false);
+	}
+
+	/* public void info(String message) {
+		var textComponent = this.getMutableText(ChatColor.translateAlternateColorCodes(this.prefix));
 		textComponent.append(message);
 		ClientPlayerEntity player = MinecraftClient.getInstance().player;
 		player.sendMessage(textComponent, false);
+	} */
+
+	public MutableText getMutableText(String message) {
+		return MutableText.of(new LiteralTextContent(message));
 	}
 
 }

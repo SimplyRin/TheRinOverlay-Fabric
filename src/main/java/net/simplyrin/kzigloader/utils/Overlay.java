@@ -116,10 +116,17 @@ public class Overlay {
 		case POINT_LOCATION:
 			break;
 		case BIOME:
-			BlockPos blockPos = mc.getCameraEntity().getBlockPos();;
-			String biome = mc.world.getRegistryManager().get(Registry.BIOME_KEY).getId(mc.world.getBiome(blockPos)).toString();
+			BlockPos blockPos = mc.getCameraEntity().getBlockPos();
 
-			return this.convertMinecraftId(biome);
+			var pos = mc.world.getBiome(blockPos);
+
+			var value = (String) pos.getKeyOrValue().map((biomeKey) -> {
+				return biomeKey.getValue().toString();
+			}, (biome_) -> {
+				return biome_;
+			});
+
+			return this.convertMinecraftId(value);
 		}
 
 		return "Unknown";

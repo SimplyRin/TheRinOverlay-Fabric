@@ -9,12 +9,13 @@ import java.util.List;
 import lombok.Getter;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.game.GameProvider;
-import net.md_5.bungee.config.Configuration;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
+import net.simplyrin.config.Config;
+import net.simplyrin.config.Configuration;
 import net.simplyrin.kzigloader.listener.ClientCommandHandler;
 import net.simplyrin.kzigloader.utils.*;
 import net.simplyrin.kzigloader.utils.Tps;
@@ -82,7 +83,6 @@ public class Main implements ModInitializer {
 	public void startMain() {
 		File folder = new File("TheRinOverlay");
 		folder.mkdirs();
-		GameProvider.BuiltinMod;
 
 		File file = new File(folder, "main.yml");
 		if (!file.exists()) {

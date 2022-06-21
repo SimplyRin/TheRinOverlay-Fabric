@@ -17,6 +17,10 @@ repositories {
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
 	mavenCentral()
+
+	maven {
+		url "https://api.simplyrin.net/maven/"
+	}
 }
 
 dependencies {
@@ -30,11 +34,11 @@ dependencies {
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
-	compileOnly 'org.projectlombok:lombok:1.18.20'
-	annotationProcessor 'org.projectlombok:lombok:1.18.20'
+	compileOnly 'org.projectlombok:lombok:1.18.22'
+	annotationProcessor 'org.projectlombok:lombok:1.18.22'
 
-	// implementation 'org.yaml:snakeyaml:1.29'
-
+	implementation 'net.simplyrin.config:Config:1.2'
+	implementation 'org.yaml:snakeyaml:1.30'
 }
 
 processResources {
@@ -64,8 +68,8 @@ java {
 }
 
 jar {
-	from("LICENSE") {
-		rename { "${it}_${project.archivesBaseName}"}
+	from("LICENSE.md") {
+		rename { "${it}_${project.archivesBaseName}.md"}
 	}
 }
 

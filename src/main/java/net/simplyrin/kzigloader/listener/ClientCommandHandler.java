@@ -115,7 +115,6 @@ public class ClientCommandHandler {
 						items.add(new OslItem("Config", "Apache License 2.0", "https://github.com/SimplyRin/Config/blob/master/LICENSE.md"));
 						items.add(new OslItem("ThreadPool", "Apache License 2.0", "https://github.com/SimplyRin/ThreadPool/blob/master/LICENSE.md"));
 						items.add(new OslItem("HttpClient", "Apache License 2.0", "https://github.com/SimplyRin/HttpClient/blob/master/LICENSE.md"));
-						items.add(new OslItem("jOOR", "Apache License 2.0", "https://github.com/jOOQ/jOOR/blob/master/README.md"));
 
 						for (OslItem item : items) {
 							LiteralText textComponent = new LiteralText(net.simplyrin.kzigloader.utils.ChatColor.translateAlternateColorCodes('&', "&b" + item.name + " &7(" + item.license + ")"));
